@@ -1,0 +1,446 @@
+@font-face {
+  font-family: 'Passion One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/PassionOne-Regular.ttf');
+}
+@font-face {
+  font-family: 'Passion One';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/PassionOne-Bold.ttf');
+}
+/* CSS RESETS */
+* {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+	font-family: 'Passion One', Arial, "Helvetica Neue", Helvetica, sans-serif;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+   	-ms-user-select: none;
+   	user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+	-webkit-tap-highlight-color: transparent !important; /* For some Androids */
+	outline: 0 !important;
+	cursor: default;
+}
+
+/* TOP PORTION */
+.topPortion, .botPortion {
+	background: #f1f1f1;
+	width: 100%;
+	max-width: 100%;
+	height: 50vh;
+	position: relative;
+	padding: 10px 20px;
+}
+
+.topPortion:after {
+	content: ' ';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #333;
+}
+
+.resultBox {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	min-width: 320px;
+	max-width: 100%;
+}
+
+.resultBox > .resultHolder {
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 15px;
+}
+
+.resultHolder > .alphaBox {
+	padding: 4px 0;
+	box-shadow: 0 0 10px -1px #333;
+	display: inline-block;
+	width: 25px;
+	font-size: 120%;
+	font-weight: 700;
+	height: 25px;
+	border-radius: 5px;
+	text-align: center;
+	color: #fff;
+	background: #444;
+   	cursor: default;
+   	position: relative;
+   	margin: 0 1px;
+   	transition:  all 1s;
+}
+
+.resultHolder > .alphaBox.hidden-result:after {
+	transition:  all 1s;
+	content: ' ';
+	width: inherit;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: inherit;
+	border-radius: inherit;
+}
+
+.resultHolder > .alphaBox.hidden-result.show-result:after {
+	width: 0px;
+	opacity: 0;
+}
+
+/* BOT PORTION */
+.letterTray {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.letterTray > .letterBox {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	cursor: default;
+}
+
+.letterHolder {
+	cursor: default;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 300px;
+	transform: translate(-50%, -60%);
+	text-align: center;
+}
+
+.letter {
+	font-weight: 700;
+	font-size: 235%;
+	display: inline-block;
+	text-align: center;
+	cursor: default;
+	padding: 0 10px;
+}
+
+.letter:nth-child(1),
+.letter:nth-child(2) {
+	margin: 10px 30px;
+}
+
+.letter:nth-child(3),
+.letter:nth-child(4) {
+	margin: 10px 50px;
+}
+
+.letter:nth-child(5),
+.letter:nth-child(6) {
+	margin: 10px 20px;
+}
+
+/* RESULT */
+.resultDisplay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 20%);
+}
+
+.resultDisplay > .resultHolder {
+	width: 100%;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* MISC */
+.shuffleWords:active,
+.restartGame:active {
+	border: 1px solid #000;
+	color: #000;
+}
+
+.shuffleWords {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 10px 0;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 0 30px 30px 0;
+	background: #e74c3c;
+	color: #fff;
+	border: 1px solid #e74c3c;
+	border-left: none;
+	text-transform: uppercase;
+}
+
+.restartGame {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 10px 0;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 30px 0 0 30px;
+	background: #2980b9;
+	color: #fff;
+	border: 1px solid #2980b9;
+	border-right: none;
+	text-transform: uppercase;
+}
+
+.infoDisplay {
+	white-space: nowrap;
+	transition: all .5s;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+	border-radius: 30px;
+	border: 3px solid #333;
+	color: #000;
+	padding: 5px 10px;
+	z-index: 999;
+	font-weight: 400;
+	background: #fff;
+}
+
+.infoDisplay:empty {
+	transition: all .5s;
+	transform: translate(-50%, -50%) scale(0);
+}
+
+.completedLevel {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: 1px solid;
+	display: none;
+}
+
+.completedLevel > .title {
+	width: 100%;
+	margin: 20px 0;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.completedLevel > .next-level {
+	margin: 20px 0;
+	font-size: 12px;
+	border: 1px solid;
+	padding: 5px 0;
+	border-radius: 3px;
+}
+
+.glass {
+	position: absolute;
+	top: -60px;
+	left: -50px;
+	width: 200%;
+	height: 200%;
+	z-index: 9999;
+	display: none;
+}
+
+.levelDspHol {
+	position: absolute;
+	width: 100%;
+	top: 10px;
+	left: 0;
+}
+
+.hintPoints {
+	position: absolute;
+	right: 20px;
+	top: 0;
+	font-size: 130%;
+	line-height: 38px;
+	z-index: 2;
+}
+
+.backButton {
+	z-index: 2;
+	position: absolute;
+	font-size: 200%;
+	top: 0;
+	font-weight: 700;
+	left: 20px;
+}
+
+.levelDisplay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	font-size: 200%;
+	font-weight: 700;
+	text-align: center;
+}
+
+/* Level Menu */
+.levelMenu {
+	position: absolute;
+	z-index: 999;
+	background: #f1f1f1;
+	width: 100%;
+	height: 100%;
+}
+
+.levelMenu > .levelHolder {
+	position: absolute;
+	max-height: 80vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow-y: scroll;
+}
+
+.levelMenu > .levelHolder::-webkit-scrollbar {
+	display: none;
+}
+
+.levelMenu > .levelHolder > .level {
+	border: 1px solid #222;
+	border-radius: 4px;
+	padding:  5px 40px;
+	margin: 10px 0;
+	color: #fff;
+	background: #222;
+	font-size: 130%;
+}
+
+.levelMenu > .levelHolder > .level.locked {
+	border: 1px solid #999;
+	color: #333;
+	background: #999;
+	pointer-events: none;
+}
+
+.levelSel {
+	width: 100%;
+	text-align: center;
+	font-size: 200%;
+}
+
+/* HOME */
+.homePage {
+	position: absolute;
+	z-index: 99999;
+	width: 100%;
+	height: 100%;
+	background: #f1f1f1;
+}
+
+.homePage > .homeTitle {
+	font-size: 300%;
+	font-weight: 700;
+	margin: 40px 0;
+	text-align: center;
+}
+
+.btn {
+	font-size: 200%;
+	border: 2px solid;
+	border-radius: 5px;
+	padding: 5px 20px;
+	text-align: center;
+	margin: 10px 0;
+	white-space: nowrap;
+}
+
+.btn.playBtn {
+	background: #2980b9;
+	color: #fff;
+}
+
+.btn.startBtn {
+	background: #e74c3c;
+	color: #fff;
+}
+
+.homePage > .buttonHolder {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.hintBtn {
+	position: absolute;
+	bottom: 100px;
+	right: 0;
+	color: #fff;
+	background: #d35400;
+	border: 1px solid #d35400;
+	border-radius: 10px 0 0 10px;
+	border-top: none;
+	border-right: none;
+	padding: 10px 5px;
+	text-align: center;
+}
+
+.hintBtn:active {
+	background: #222;
+	color: #fff;
+	border-color: #222;
+}
+
+.resetGame {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #e74c3c;
+	color: #ecf0f1;
+	padding: 5px 10px;
+	border-radius: 5px 5px 0 0;
+}
+
+.resetDialog {
+	background: #34495e;
+	text-align: center;
+	width: 100%;
+	padding: 50px 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 99999;
+	display: none;
+}
+
+.resetDialog > .yes {
+	background: #e74c3c;
+	border-color: #e74c3c;
+	color: #fff;
+}
+
+.resetDialog > .no {
+	background: #2980b9;
+	border-color: #2980b9;
+	color: #fff;
+}
+
+.resetDialog > .title {
+	font-size: 250%;
+	color: #fff;
+}

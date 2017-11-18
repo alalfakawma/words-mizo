@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+	<title>Words(Mizo)</title>
+	<link href="https://fonts.googleapis.com/css?family=Amaranth:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	
+	<!-- GAME BODY -->
+
+	<div class="homePage" data-pos="1">
+		<div class="homeTitle">Words(Mizo)</div>
+		<div class="buttonHolder">
+			<div class="btn playBtn" onclick="play();">Play</div>
+			<div class="btn startBtn" onclick="this.parentNode.parentNode.style.display = 'none';">Level Select</div>
+		</div>
+		<div class="resetGame" onclick="callReset();">Reset Game</div>
+		<div class="resetDialog">
+			<div class="title">Reset game?</div>
+			<div class="btn yes" onclick="resetGame(); this.parentNode.style.display = 'none';">Yes</div>
+			<div class="btn no" onclick="this.parentNode.style.display = 'none';">No</div>
+		</div>
+	</div>
+
+	<div class="levelMenu" data-pos="2">
+		<div class="levelDspHol">
+			<div class="backButton" onclick="back(this.parentNode.parentNode);"><</div>
+			<div class="levelSel">Select Level</div>
+		</div>
+		<div class="levelHolder">
+			<!-- GENERATE VIA JAVASCRIPT -->
+		</div>
+	</div>
+
+	<div class="gameHolder" data-pos="3">
+		<div class="levelDspHol">
+			<div class="backButton" onclick="back(this.parentNode.parentNode);"><</div>
+			<div class="levelDisplay">
+				<!-- GENERATE VIA JAVASCRIPT -->
+			</div>
+			<div class="hintPoints">
+				<!-- GENERATE VIA JAVASCRIPT -->
+			</div>
+		</div>
+
+		<div class="topPortion">
+			<div class="resultBox">
+				<!-- GENERATE VIA JAVASCRIPT -->
+			</div>
+		</div>
+		<div class="botPortion">
+			<div class="hintBtn" onclick="useHint();">Hint</div>
+			<div class="letterTray">
+				<div class="letterBox">
+					<div class="letterHolder">
+						<!-- GENERATE VIA JAVASCRIPT -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="shuffleWords" onclick="generateAlphaBets();">Shuffle</div>
+		<div class="restartGame" onclick="hintedWords = []; foundWords = []; generateWords();">Restart Level</div>
+
+		<div class="infoDisplay"></div>
+
+		<div class="completedLevel">
+			<div class="title">Level Completed</div>
+			<div class="next-level" onclick="nextLevel(this); maxInc(); saveGame();">Go to next level</div>
+		</div>
+
+		<div class="resultDisplay">
+			<div class="resultHolder">
+				<!-- GENERATE VIA JAVASCRIPT -->
+			</div>
+		</div>
+	</div>
+
+	<!-- GAME BODY END -->
+	<script type="text/javascript" src="js/words.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+
+</body>
+</html>
